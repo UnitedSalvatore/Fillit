@@ -1,24 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_tetradd.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ypikul <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/10 15:34:11 by ypikul            #+#    #+#             */
-/*   Updated: 2017/11/10 15:40:24 by ypikul           ###   ########.fr       */
+/*   Created: 2017/11/12 00:45:16 by ypikul            #+#    #+#             */
+/*   Updated: 2017/11/12 00:50:11 by ypikul           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-#include "stdlib.h"
-#include "unistd.h"
+#include "ft_fillit.h"
 
-int		main(int ac, char **av)
+void	ft_tetradd(t_tetr **start, t_tetr *new)
 {
-	if (ac != 2)
-	{
-		ft_putendl_fd("usage: ./fillit map.fillit", STDERR_FILENO);
-	}
-	return (EXIT_SUCCESS);
+	if (alst == NULL || new == NULL)
+		return ;
+	new->next = *start;
+	*start = new;
 }
