@@ -6,29 +6,35 @@
 /*   By: ypikul <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/10 15:34:11 by ypikul            #+#    #+#             */
-/*   Updated: 2017/11/12 06:37:42 by ypikul           ###   ########.fr       */
+/*   Updated: 2017/11/12 08:58:20 by ypikul           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "ft_fillit.h"
-#include "stdlib.h"
 
 int		main(int ac, char **av)
 {
 	t_tetr	*list;
+	t_tetr	*temp;
 
 	if (ac != 2)
 	{
 		ft_putendl_fd("usage: ./fillit map.fillit", STDERR_FILENO);
-		return (EXIT_FAILURE);
+		return (1);
 	}
-	av[1][0] = '\0';
-	list = ft_tetrnew(".##.\n.##.\n....\n....\n");
+	list = ft_readfile(av[1]);
 	if (ft_tetrcheck(list))
-		ft_putendl("KO");
+		ft_putendl_fd("error", STDERR_FILENO);
 	else
-		ft_putendl("OK");
+		ft_putendl("success");
+	temp = list;
+	while (temp)
+	{
+		ft_putstr(temp->content);
+		ft_putchar('\n');
+		temp = temp->next;
+	}
 	ft_tetrdel(&list);
-	return (EXIT_SUCCESS);
+	return (0);
 }

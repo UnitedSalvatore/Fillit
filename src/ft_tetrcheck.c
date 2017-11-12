@@ -6,7 +6,7 @@
 /*   By: ypikul <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/12 01:49:38 by ypikul            #+#    #+#             */
-/*   Updated: 2017/11/12 06:22:21 by ypikul           ###   ########.fr       */
+/*   Updated: 2017/11/12 08:20:38 by ypikul           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,9 @@ static int	ft_check_chars(const char *tetrimino)
 	while (i < TETRIMINO_SIZE)
 	{
 		if (((i % TETRIMINO_WIDTH) != (TETRIMINO_WIDTH - 1) && \
-					!(tetrimino[i] == FULL_BLOCK || tetrimino[i] == EMPTY_BLOCK)) || \
-				((i % TETRIMINO_WIDTH) == (TETRIMINO_WIDTH - 1) && \
-				 tetrimino[i] != '\n'))
+				!ISVALID_ELEM(tetrimino[i])) || \
+			((i % TETRIMINO_WIDTH) == (TETRIMINO_WIDTH - 1) && \
+				tetrimino[i] != '\n'))
 			return (1);
 		if (tetrimino[i] == FULL_BLOCK)
 			j++;
@@ -83,10 +83,7 @@ int			ft_tetrcheck(t_tetr *start)
 	{
 		if (ft_check_chars(start->content) || \
 				ft_check_connection(start->content))
-		{
-			ft_putendl_fd("error", STDERR_FILENO);
 			return (1);
-		}
 		start = start->next;
 	}
 	return (0);
