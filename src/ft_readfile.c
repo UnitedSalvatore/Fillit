@@ -6,7 +6,7 @@
 /*   By: ypikul <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/12 06:57:13 by ypikul            #+#    #+#             */
-/*   Updated: 2017/11/12 09:45:43 by ypikul           ###   ########.fr       */
+/*   Updated: 2017/11/15 18:58:06 by ypikul           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ t_tetr		*ft_readfile(const char *file_name)
 	tetr_amount = 0;
 	while ((ret = read(fd, buffer, (TETRIMINO_SIZE + 1))) > 0)
 	{
-		if ( ret == -1 || ++tetr_amount > TETRIMINO_MAX || \
+		if (ret == -1 || ++tetr_amount > TETRIMINO_MAX || \
 		ft_verify_size(buffer, ret))
 		{
 			ft_tetrdel(&list);
