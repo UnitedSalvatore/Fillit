@@ -30,7 +30,7 @@ static int	ft_verify_size(char *buffer, int ret)
 }
 
 /*
-**				ACHTUNG MINEN
+**			ACHTUNG MINEN
 **	No ft_tetrdel when tetrimino wasn't allocated
 */
 
@@ -54,7 +54,7 @@ t_tetr		*ft_readfile(const char *file_name)
 			ft_tetrdel(&list);
 			return (list);
 		}
-		ft_tetradd(&list, ft_tetrnew(buffer));
+		ft_tetradd(&list, ft_tetrnew(ft_get_id(buffer)));
 	}
 	close(fd);
 	return (list);

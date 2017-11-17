@@ -38,16 +38,15 @@
 
 typedef	struct			s_tetr
 {
-	char				*content;
+	uint8_t				id;;
 	struct s_tetr		*next;
-	uint16_t			mask;
 }						t_tetr;
 
-t_tetr					*ft_tetrnew(const char *str);
+t_tetr					*ft_tetrnew(const uint8_t id);
 void					ft_tetradd(t_tetr **start, t_tetr *new);
 void					ft_tetrdel(t_tetr **start);
 int						ft_tetrcheck(t_tetr *start);
 t_tetr					*ft_readfile(const char *file_name);
-uint16_t				ft_get_bitmask(const char *tetrimino);
+uint8_t					ft_get_id(const char *tetrimino);
 
 #endif

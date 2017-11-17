@@ -14,19 +14,13 @@
 #include "libft.h"
 #include <stdlib.h>
 
-t_tetr	*ft_tetrnew(const char *str)
+t_tetr	*ft_tetrnew(const uint8_t id)
 {
 	t_tetr *tetrimino;
 
 	if ((tetrimino = malloc(sizeof(t_tetr))) == NULL)
 		return (NULL);
-	tetrimino->content = malloc(sizeof(char) * (TETRIMINO_SIZE + 1));
-	if (tetrimino->content == NULL)
-	{
-		free(tetrimino);
-		return (NULL);
-	}
-	ft_strcpy(tetrimino->content, str);
+	tetrimino->id = id;
 	tetrimino->next = NULL;
 	return (tetrimino);
 }
