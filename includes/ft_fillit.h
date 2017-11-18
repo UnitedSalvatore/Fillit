@@ -13,8 +13,8 @@
 #ifndef FT_FILLIT_H
 # define FT_FILLIT_H
 
-# include <string.h>
-# include <unistd.h>
+# include <stdint.h>
+# include <stdio.h>
 
 # define FULL_BLOCK			'#'
 # define EMPTY_BLOCK		'.'
@@ -38,14 +38,14 @@
 
 typedef	struct			s_tetr
 {
-	uint8_t				id;;
+	uint8_t				id;
 	struct s_tetr		*next;
 }						t_tetr;
 
 t_tetr					*ft_tetrnew(const uint8_t id);
 void					ft_tetradd(t_tetr **start, t_tetr *new);
 void					ft_tetrdel(t_tetr **start);
-int						ft_tetrcheck(t_tetr *start);
+int						ft_tetrcheck(const char *tetrimino);
 t_tetr					*ft_readfile(const char *file_name);
 uint8_t					ft_get_id(const char *tetrimino);
 

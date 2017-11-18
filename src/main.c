@@ -12,6 +12,7 @@
 
 #include "libft.h"
 #include "ft_fillit.h"
+#include <unistd.h>
 
 int		main(int ac, char **av)
 {
@@ -23,7 +24,7 @@ int		main(int ac, char **av)
 		return (1);
 	}
 	list = ft_readfile(av[1]);
-	if (ft_tetrcheck(list))
+	if (list == NULL)
 		ft_putendl_fd("error", STDERR_FILENO);
 	else
 		ft_putendl("success");

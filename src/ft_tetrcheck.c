@@ -75,16 +75,10 @@ static int	ft_check_connection(const char *tetrimino)
 **	Function checks the validity of the tetrimino.
 */
 
-int			ft_tetrcheck(t_tetr *start)
+int			ft_tetrcheck(const char *tetrimino)
 {
-	if (start == NULL)
-		return (1);
-	while (start)
-	{
-		if (ft_check_chars(start->content) || \
-				ft_check_connection(start->content))
+	if (ft_check_chars(tetrimino) || \
+				ft_check_connection(tetrimino))
 			return (1);
-		start = start->next;
-	}
 	return (0);
 }

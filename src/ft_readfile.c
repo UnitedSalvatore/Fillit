@@ -10,8 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
 #include "ft_fillit.h"
+#include <unistd.h>
 #include <fcntl.h>
 #include <sys/types.h>
 #include <sys/stat.h>
@@ -49,7 +49,7 @@ t_tetr		*ft_readfile(const char *file_name)
 	while ((ret = read(fd, buffer, (TETRIMINO_SIZE + 1))) > 0)
 	{
 		if (ret == -1 || ++tetr_amount > TETRIMINO_MAX || \
-		ft_verify_size(buffer, ret))
+		ft_verify_size(buffer, ret) || ft_tetrcheck(buffer))
 		{
 			ft_tetrdel(&list);
 			return (list);

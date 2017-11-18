@@ -14,8 +14,9 @@
 
 void	ft_tetradd(t_tetr **start, t_tetr *new)
 {
-	if (start == NULL || new == NULL)
-		return ;
-	new->next = *start;
-	*start = new;
+	if (start && new)
+	{
+		new->next = *start;
+		*start = new;
+	}
 }

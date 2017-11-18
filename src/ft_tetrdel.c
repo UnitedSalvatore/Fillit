@@ -21,8 +21,6 @@ void	ft_tetrdel(t_tetr **start)
 		while (*start != NULL)
 		{
 			next = (*start)->next;
-			if ((*start)->content != NULL)
-				free((*start)->content);
 			free(*start);
 			*start = next;
 		}
