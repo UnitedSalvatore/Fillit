@@ -6,7 +6,7 @@
 /*   By: ypikul <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/12 01:49:38 by ypikul            #+#    #+#             */
-/*   Updated: 2017/11/12 09:59:47 by ypikul           ###   ########.fr       */
+/*   Updated: 2017/11/18 15:43:44 by ypikul           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ static int	ft_check_connection(const char *tetrimino)
 int			ft_tetrcheck(const char *tetrimino)
 {
 	if (ft_check_chars(tetrimino) || \
-				ft_check_connection(tetrimino))
-			return (1);
+			ft_check_connection(tetrimino))
+		return (1);
 	return (0);
 }

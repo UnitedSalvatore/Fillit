@@ -6,7 +6,7 @@
 /*   By: ypikul <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/12 06:57:13 by ypikul            #+#    #+#             */
-/*   Updated: 2017/11/15 18:58:06 by ypikul           ###   ########.fr       */
+/*   Updated: 2017/11/18 19:50:28 by ypikul           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,17 @@ static int	ft_verify_size(char *buffer, int ret)
 	return (1);
 }
 
-/*
-**			ACHTUNG MINEN
-**	No ft_tetrdel when tetrimino wasn't allocated
-*/
+static void	ft_set_char(t_tetr *start)
+{
+	char c;
+
+	c = 'A';
+	while (start)
+	{
+		start->name = c++;
+		start = start->next;
+	}
+}
 
 t_tetr		*ft_readfile(const char *file_name)
 {
@@ -46,7 +53,7 @@ t_tetr		*ft_readfile(const char *file_name)
 		return (NULL);
 	list = NULL;
 	tetr_amount = 0;
-	while ((ret = read(fd, buffer, (TETRIMINO_SIZE + 1))) > 0)
+	while ((ret = read(fd, buffer, (TETRIMINO_SIZE + 1))) > TETRIMINO_SIZE)
 	{
 		if (ret == -1 || ++tetr_amount > TETRIMINO_MAX || \
 		ft_verify_size(buffer, ret) || ft_tetrcheck(buffer))
@@ -57,5 +64,6 @@ t_tetr		*ft_readfile(const char *file_name)
 		ft_tetradd(&list, ft_tetrnew(ft_get_id(buffer)));
 	}
 	close(fd);
+	ft_set_char(list);
 	return (list);
 }
