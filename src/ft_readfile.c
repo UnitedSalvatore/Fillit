@@ -6,64 +6,103 @@
 /*   By: ypikul <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/12 06:57:13 by ypikul            #+#    #+#             */
-/*   Updated: 2017/11/18 19:50:28 by ypikul           ###   ########.fr       */
+/*   Updated: 2017/11/20 06:39:21 by ypikul           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_fillit.h"
+#include "libft.h"
 #include <unistd.h>
 #include <fcntl.h>
 #include <sys/types.h>
 #include <sys/stat.h>
 
-static int	ft_verify_size(char *buffer, int ret)
+/*
+**	Function checks the size of read tetrimino.
+*/
+
+static int		ft_verify_size(char *buf, int ret)
 {
-	if (ret == TETRIMINO_SIZE)
+	if (ret == 20)
 		return (0);
-	else if (ret == (TETRIMINO_SIZE + 1) && \
-				buffer[TETRIMINO_SIZE] == '\n')
+	else if (ret == 21 && buf[20] == '\n')
 	{
-		buffer[TETRIMINO_SIZE] = '\0';
+		buf[20] = '\0';
 		return (0);
 	}
 	return (1);
 }
 
-static void	ft_set_char(t_tetr *start)
-{
-	char c;
+/*
+**	Function checks the validity of characters in the tetrimino.
+*/
 
-	c = 'A';
-	while (start)
+static int		ft_check_chars(const char *tetrimino)
+{
+	size_t	i;
+
+	i = 0;
+	while (i < 20)
 	{
-		start->name = c++;
-		start = start->next;
+		if (((i % 5) != 4 && \
+				!ISVALID_ELEM(tetrimino[i])) || \
+			((i % 5) == 4 && \
+				tetrimino[i] != '\n'))
+			return (1);
+		i++;
 	}
+	return (0);
 }
 
-t_tetr		*ft_readfile(const char *file_name)
+/*
+**	Function reads one tetrimino at time from the file
+*/
+
+static	t_tetr	*ft_read_map(int fd, t_tetr **list, char *buf, char c)
+{
+	int			ret;
+	int			cflag;
+	uint16_t	id;
+
+	while ((cflag = 0) == 0)
+	{
+		if ((ret = read(fd, buf, 21)) == 21)
+			cflag = 1;
+		if (ft_verify_size(buf, ret) || ft_check_chars(buf) ||
+				(id = ft_get_id(buf) == 0) || c > 'Z')
+		{
+			ft_tetrdel(list);
+			ft_putendl_fd("error", STDERR_FILENO);
+			exit(1);
+		}
+		else
+		{
+			ft_tetradd(list, ft_tetrnew(id));
+			(*list)->name = c++;
+			if (cflag == 0)
+				break ;
+		}
+	}
+	return (*list);
+}
+
+/*
+** Function set up variables for ft_read_map
+*/
+
+t_tetr			*ft_readfile(const char *file_name)
 {
 	int		fd;
-	char	buffer[TETRIMINO_SIZE + 2];
-	int		ret;
 	t_tetr	*list;
-	int		tetr_amount;
+	char	buf[22];
 
 	if ((fd = open(file_name, O_RDONLY)) == -1)
-		return (NULL);
-	list = NULL;
-	tetr_amount = 0;
-	while ((ret = read(fd, buffer, (TETRIMINO_SIZE + 1))) > TETRIMINO_SIZE)
 	{
-		if (ret == -1 || ++tetr_amount > TETRIMINO_MAX || \
-		ft_verify_size(buffer, ret) || ft_tetrcheck(buffer))
-		{
-			ft_tetrdel(&list);
-			return (list);
-		}
-		ft_tetradd(&list, ft_tetrnew(ft_get_id(buffer)));
+		ft_putendl_fd("error", STDERR_FILENO);
+		exit(1);
 	}
+	list = NULL;
+	list = ft_read_map(fd, &list, buf, 'A');
 	close(fd);
-	ft_set_char(list);
 	return (list);
 }

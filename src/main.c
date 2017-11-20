@@ -6,7 +6,7 @@
 /*   By: ypikul <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/10 15:34:11 by ypikul            #+#    #+#             */
-/*   Updated: 2017/11/12 10:13:33 by ypikul           ###   ########.fr       */
+/*   Updated: 2017/11/20 04:33:36 by ypikul           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,6 @@ int		main(int ac, char **av)
 		return (1);
 	}
 	list = ft_readfile(av[1]);
-	if (list == NULL)
-		ft_putendl_fd("error", STDERR_FILENO);
-	else
-		ft_putendl("success");
 	ft_tetrdel(&list);
 	return (0);
 }

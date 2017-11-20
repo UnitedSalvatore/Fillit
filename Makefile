@@ -4,7 +4,6 @@ LIB = libft.a
 FILENAMES = ft_get_id.c \
 			ft_readfile.c \
 			ft_tetradd.c \
-			ft_tetrcheck.c \
 			ft_tetrdel.c \
 			ft_tetrnew.c \
 			main.c \
