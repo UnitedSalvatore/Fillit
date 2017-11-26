@@ -1,27 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_tetrdel.c                                       :+:      :+:    :+:   */
+/*   ft_del_matrix.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ypikul <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/12 02:04:12 by ypikul            #+#    #+#             */
-/*   Updated: 2017/11/26 00:34:07 by ypikul           ###   ########.fr       */
+/*   Created: 2017/11/23 18:18:57 by ypikul            #+#    #+#             */
+/*   Updated: 2017/11/26 00:50:11 by ypikul           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_fillit.h"
 #include <stdlib.h>
 
-void	ft_tetrdel(t_tetr **start)
+void	ft_del_matrix(char ***matrix)
 {
-	t_tetr	*next;
+	size_t i;
 
-	if (start != NULL)
-		while (*start != NULL)
-		{
-			next = (*start)->next;
-			free(*start);
-			*start = next;
-		}
+	if (matrix != NULL && *matrix != NULL)
+	{
+		i = 0;
+		while ((*matrix)[i] != NULL)
+			free((*matrix)[i++]);
+		free((char *)*matrix);
+		*matrix = NULL;
+	}
 }

@@ -1,27 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_tetrdel.c                                       :+:      :+:    :+:   */
+/*   ft_bigmatrix_size.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ypikul <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: abodnar <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/12 02:04:12 by ypikul            #+#    #+#             */
-/*   Updated: 2017/11/26 00:34:07 by ypikul           ###   ########.fr       */
+/*   Created: 2017/11/16 11:51:06 by abodnar           #+#    #+#             */
+/*   Updated: 2017/11/25 17:59:44 by ypikul           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_fillit.h"
-#include <stdlib.h>
 
-void	ft_tetrdel(t_tetr **start)
+int		ft_bigmatrix_size(int s, t_tetr *head)
 {
-	t_tetr	*next;
+	int		res;
 
-	if (start != NULL)
-		while (*start != NULL)
-		{
-			next = (*start)->next;
-			free(*start);
-			*start = next;
-		}
+	res = 0;
+	while (head)
+	{
+		if (head->id == 0)
+			res += (s - 1) * (s - 1);
+		else if (head->id == 1 || head->id == 2)
+			res += s * (s - 3);
+		else
+			res += (s - 1) * (s - 2);
+		head = head->next;
+	}
+	return (res);
 }

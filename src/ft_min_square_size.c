@@ -1,27 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_tetrdel.c                                       :+:      :+:    :+:   */
+/*   ft_min_square_size.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ypikul <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: abodnar <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/12 02:04:12 by ypikul            #+#    #+#             */
-/*   Updated: 2017/11/26 00:34:07 by ypikul           ###   ########.fr       */
+/*   Created: 2017/11/16 11:47:33 by abodnar           #+#    #+#             */
+/*   Updated: 2017/11/25 16:53:17 by ypikul           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_fillit.h"
-#include <stdlib.h>
 
-void	ft_tetrdel(t_tetr **start)
+int		ft_min_square_size(t_tetr *head, int *fcount)
 {
-	t_tetr	*next;
+	int		size;
+	int		counter;
 
-	if (start != NULL)
-		while (*start != NULL)
-		{
-			next = (*start)->next;
-			free(*start);
-			*start = next;
-		}
+	counter = 0;
+	while (head)
+	{
+		counter++;
+		head = head->next;
+	}
+	*fcount = counter;
+	counter *= 4;
+	size = 0;
+	while (size * size < counter)
+		size++;
+	return (size);
 }

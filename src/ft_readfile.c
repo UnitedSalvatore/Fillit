@@ -6,12 +6,13 @@
 /*   By: ypikul <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/12 06:57:13 by ypikul            #+#    #+#             */
-/*   Updated: 2017/11/20 06:39:21 by ypikul           ###   ########.fr       */
+/*   Updated: 2017/11/25 18:39:24 by ypikul           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_fillit.h"
 #include "libft.h"
+#include <stdlib.h>
 #include <unistd.h>
 #include <fcntl.h>
 #include <sys/types.h>
@@ -62,14 +63,14 @@ static	t_tetr	*ft_read_map(int fd, t_tetr **list, char *buf, char c)
 {
 	int			ret;
 	int			cflag;
-	uint16_t	id;
+	uint8_t		id;
 
 	while ((cflag = 0) == 0)
 	{
 		if ((ret = read(fd, buf, 21)) == 21)
 			cflag = 1;
 		if (ft_verify_size(buf, ret) || ft_check_chars(buf) ||
-				(id = ft_get_id(buf) == 0) || c > 'Z')
+				((id = ft_get_id(buf)) == 42) || c > 'Z')
 		{
 			ft_tetrdel(list);
 			ft_putendl_fd("error", STDERR_FILENO);
