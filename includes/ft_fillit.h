@@ -6,7 +6,7 @@
 /*   By: ypikul <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/11 19:53:07 by ypikul            #+#    #+#             */
-/*   Updated: 2017/11/25 18:25:57 by ypikul           ###   ########.fr       */
+/*   Updated: 2017/11/26 04:20:18 by ypikul           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 # define FT_FILLIT_H
 
 # include <stdint.h>
-#include <stdio.h>
 
 # define FULL_BLOCK			'#'
 # define EMPTY_BLOCK		'.'
@@ -48,7 +47,8 @@ int						ft_l_counter(char **matrix);
 int						ft_b_counter(char **matrix);
 char					**ft_copy_matrix(char **matrix);
 void					ft_swap_rows(char **copy, char name);
-char					*ft_fillit(char **matrix, int s, const int fcount, char c);
+char					*ft_fillit(char **matrix, int s, \
+		const int fcount, char c);
 void					ft_del_matrix(char ***matrix);
 
 char					**ft_matrix_one(t_tetr *head, int s);
