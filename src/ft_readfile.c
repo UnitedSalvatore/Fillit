@@ -6,7 +6,7 @@
 /*   By: ypikul <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/12 06:57:13 by ypikul            #+#    #+#             */
-/*   Updated: 2017/11/25 18:39:24 by ypikul           ###   ########.fr       */
+/*   Updated: 2017/11/26 03:53:06 by ypikul           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ static	t_tetr	*ft_read_map(int fd, t_tetr **list, char *buf, char c)
 				((id = ft_get_id(buf)) == 42) || c > 'Z')
 		{
 			ft_tetrdel(list);
-			ft_putendl_fd("error", STDERR_FILENO);
+			ft_putendl_fd("error", STDOUT_FILENO);
 			exit(1);
 		}
 		else
@@ -99,7 +99,7 @@ t_tetr			*ft_readfile(const char *file_name)
 
 	if ((fd = open(file_name, O_RDONLY)) == -1)
 	{
-		ft_putendl_fd("error", STDERR_FILENO);
+		ft_putendl_fd("error", STDOUT_FILENO);
 		exit(1);
 	}
 	list = NULL;
