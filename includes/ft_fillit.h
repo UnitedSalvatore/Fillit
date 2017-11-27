@@ -6,7 +6,7 @@
 /*   By: ypikul <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/11 19:53:07 by ypikul            #+#    #+#             */
-/*   Updated: 2017/11/26 04:20:18 by ypikul           ###   ########.fr       */
+/*   Updated: 2017/11/26 18:21:42 by ypikul           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define FT_FILLIT_H
 
 # include <stdint.h>
+# include <string.h>
 
 # define FULL_BLOCK			'#'
 # define EMPTY_BLOCK		'.'
@@ -51,10 +52,10 @@ char					*ft_fillit(char **matrix, int s, \
 		const int fcount, char c);
 void					ft_del_matrix(char ***matrix);
 
-char					**ft_matrix_one(t_tetr *head, int s);
-char					**ft_matrix_two(t_tetr *head, int s);
-char					**ft_matrix_three(t_tetr *head, int s);
-char					**ft_matrix_four(t_tetr *head, int s);
-char					**ft_matrix_five(t_tetr *head, int s);
+char					**ft_matrix_one(t_tetr *head, int s, size_t j);
+char					**ft_matrix_two(t_tetr *head, int s, size_t j);
+char					**ft_matrix_three(t_tetr *head, int s, size_t j);
+char					**ft_matrix_four(t_tetr *head, int s, size_t j);
+char					**ft_matrix_five(t_tetr *head, int s, size_t j);
 
 #endif

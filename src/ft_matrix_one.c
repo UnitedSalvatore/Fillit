@@ -6,7 +6,7 @@
 /*   By: abodnar <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/15 11:48:55 by abodnar           #+#    #+#             */
-/*   Updated: 2017/11/26 01:36:39 by ypikul           ###   ########.fr       */
+/*   Updated: 2017/11/26 18:18:19 by ypikul           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,12 +78,11 @@ static char	*ft_fillmatrix_sq(int s, int row, char name)
 	return (line);
 }
 
-char		**ft_matrix_one(t_tetr *head, int s)
+char		**ft_matrix_one(t_tetr *head, int s, size_t j)
 {
 	char	**matrix;
 	int		rows;
 	int		i;
-	int		j;
 
 	if ((i = -1) == -1 && head->id == 0)
 		rows = (s - 1) * (s - 1);
@@ -91,7 +90,6 @@ char		**ft_matrix_one(t_tetr *head, int s)
 		rows = s * (s - 3);
 	if (!(matrix = (char**)malloc(sizeof(char*) * (rows + 1))))
 		return (NULL);
-	j = 0;
 	while (++i < s * s)
 	{
 		if (head->id == 0)
