@@ -26,34 +26,33 @@ FILENAMES = ft_get_id.c \
 
 
 SOURCES = $(addprefix ./src/, $(FILENAMES))
-OBJECTS = $(addprefix obj/, $(FILENAMES:.c=.o))
+OBJECTS = $(addprefix ./obj/, $(FILENAMES:.c=.o))
 
 CC = gcc
 FLAGS ?= -Wall -Wextra -Werror
-FLAGS += -I./includes/ -I./libft/
+FLAGS += -I./src/ -I./libft/
 
 all: $(NAME)
 
 $(NAME): $(OBJECTS) $(LIB)
-	$(CC) -o $@ $(FLAGS) $(OBJECTS) $(LIB)
+	@$(CC) -o $@ $(FLAGS) $(OBJECTS) $(LIB)
 
 $(LIB):
-	make -C ./libft/
+	@make -C ./libft/
 
 obj:
-	mkdir obj/
+	@mkdir obj/
 
 obj/%.o: ./src/%.c | obj
-	$(CC) -c $(FLAGS) $< -o $@
+	@$(CC) -c $(FLAGS) $< -o $@
 
 clean:
-	make -C ./libft/ fclean
-	rm -rf obj/
+	@make -C ./libft/ fclean
+	@rm -rf obj/
 
 fclean: clean
-	rm -f $(NAME)
+	@rm -f $(NAME)
 
 re: fclean all
 
-.NOTPARALLEL:
 .PHONY: all clean fclean re
